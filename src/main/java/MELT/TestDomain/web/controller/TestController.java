@@ -1,9 +1,10 @@
 package MELT.TestDomain.web.controller;
 
+import MELT.TestDomain.domain.Item;
+import MELT.TestDomain.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by melodist
@@ -15,10 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/test")
+@RequiredArgsConstructor
 public class TestController {
+
+    private final ItemService itemService;
 
     @GetMapping("/test")
     public String test() {
         return "test_success";
+    }
+
+    @PutMapping("/decreaseStock/{id}/{count}")
+    public Item decreaseStock(@PathVariable Long id, @PathVariable int count) {
+        return itemService.decreaseStock(id, count);
     }
 }

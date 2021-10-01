@@ -1,16 +1,22 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost:9093/~/compTrxApi
+    url: jdbc:h2:tcp://localhost:9093/~/testDomain
     username: sa
     password:
     driver-class-name: org.h2.Driver
 
+
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
+  sql:
+    init:
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+      mode: always
 
 logging.level:
     org.hibernate.SQL: debug
