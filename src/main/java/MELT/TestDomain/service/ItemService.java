@@ -19,10 +19,17 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public Item decreaseStock(Long id, int count) {
+    /**
+     * ID로 상품 정보를 조회한다.
+     * @param id
+     * @return
+     */
+    public Item findItem(Long id) {
+        return itemRepository.findOne(id);
+    }
+
+    public void changeStock(Long id, int stock) {
         Item findItem = itemRepository.findOne(id);
-        findItem.decreaseStock(count);
-        itemRepository.save(findItem);
-        return findItem;
+        findItem.changeStock(stock);
     }
 }
