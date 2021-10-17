@@ -19,6 +19,7 @@ spring:
       mode: always
 
 logging.level:
+    MELT: debug
     org.hibernate.SQL: debug
 
 server:
