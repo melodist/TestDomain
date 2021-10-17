@@ -3,6 +3,7 @@ package MELT.TestDomain.web.controller;
 import MELT.TestDomain.domain.Item;
 import MELT.TestDomain.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * Test Controller
  */
+@Slf4j
 @RestController
 @RequestMapping("/item")
 @RequiredArgsConstructor
@@ -34,6 +36,8 @@ public class ItemController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Item> findItem(@PathVariable Long id) {
+        log.debug("ItemController.findItem()");
+
         Item findItem = itemService.findItem(id);
         // 조회된 상품이 없을 경우 noContent 출력
         if (findItem == null) {
@@ -51,6 +55,7 @@ public class ItemController {
      */
     @PutMapping("/{id}/{stock}")
     public ResponseEntity changeStock(@PathVariable Long id, @PathVariable int stock) {
+        log.debug("ItemController.changeStock() : id: {}, stock: {}", id, stock);
         itemService.changeStock(id, stock);
         return new ResponseEntity("success", HttpStatus.OK);
     }
