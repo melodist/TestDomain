@@ -1,6 +1,7 @@
-package MELT.TestDomain.web.controller;
+package MELT.TestDomain.controller;
 
 import MELT.TestDomain.domain.Item;
+import MELT.TestDomain.domain.Message;
 import MELT.TestDomain.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,16 +36,19 @@ public class ItemController {
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Item> findItem(@PathVariable Long id) {
+    public ResponseEntity<Message> findItem(@PathVariable Long id) {
         log.debug("ItemController.findItem()");
 
         Item findItem = itemService.findItem(id);
-        // 조회된 상품이 없을 경우 noContent 출력
+        // 조회된 상품이 없을 경우 Bad Request 출력
         if (findItem == null) {
-            return ResponseEntity.noContent().build();
+            return new ResponseEntity<>(
+                    new Message("403 Bad Request", "요청하신 상품이 존재하지 않습니다.", null)
+                    ,HttpStatus.BAD_REQUEST);
         }
 
-        return ResponseEntity.ok().body(findItem);
+        return new ResponseEntity<>(
+                new Message("200 OK", "상품을 성공적으로 조회하였습니다.", findItem), HttpStatus.OK);
     }
 
     /**
