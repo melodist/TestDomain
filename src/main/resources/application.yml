@@ -4,8 +4,6 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
-
-
   jpa:
     hibernate:
       ddl-auto: none
@@ -14,8 +12,8 @@ spring:
         format_sql: true
   sql:
     init:
-      schema-locations: classpath:schema.sql
-      data-locations: classpath:data.sql
+      schema-locations: classpath:/h2/schema.sql
+      data-locations: classpath:/h2/data.sql
       mode: always
 
 logging.level:
