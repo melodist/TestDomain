@@ -1,7 +1,7 @@
-package MELT.TestDomain.service;
+package MELT.TestDomainItem.service;
 
-import MELT.TestDomain.domain.Item;
-import MELT.TestDomain.repository.ItemRepository;
+import MELT.TestDomainItem.domain.Item;
+import MELT.TestDomainItem.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
