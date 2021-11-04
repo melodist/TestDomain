@@ -1,10 +1,10 @@
-package MELT.TestDomain;
+package MELT.TestDomainItem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TestDomainApplicationTests {
+class TestDomainItemApplicationTests {
 
 	@Test
 	void contextLoads() {
