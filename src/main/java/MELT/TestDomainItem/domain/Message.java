@@ -1,5 +1,6 @@
-package MELT.TestDomain.domain;
+package MELT.TestDomainItem.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,7 +14,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class Message {
 
+    @ApiModelProperty(example = "상태코드")
     private String status;
+
+    @ApiModelProperty(example = "메시지")
     private String message;
+
+    @ApiModelProperty(example = "데이터")
     private Object data;
 }

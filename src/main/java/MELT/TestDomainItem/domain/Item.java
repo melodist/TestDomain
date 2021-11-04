@@ -1,4 +1,4 @@
-package MELT.TestDomain.domain;
+package MELT.TestDomainItem.domain;
 
 import lombok.Getter;
 

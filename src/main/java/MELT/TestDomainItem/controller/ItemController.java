@@ -1,13 +1,17 @@
-package MELT.TestDomain.controller;
+package MELT.TestDomainItem.controller;
 
-import MELT.TestDomain.domain.Item;
-import MELT.TestDomain.domain.Message;
-import MELT.TestDomain.service.ItemService;
+import MELT.TestDomainItem.domain.Item;
+import MELT.TestDomainItem.domain.Message;
+import MELT.TestDomainItem.service.ItemService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * Created by melodist
@@ -26,6 +30,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping("/test")
+    @ApiIgnore
     public String test() {
         return "test_success";
     }
@@ -36,6 +41,8 @@ public class ItemController {
      * @return
      */
     @GetMapping("/{id}")
+    @ApiOperation(value ="상품 조회", notes = "상품 ID로 상품 정보를 조회한다.")
+    @ApiImplicitParam(name = "id", value = "상품 ID")
     public ResponseEntity<Message> findItem(@PathVariable Long id) {
         log.debug("ItemController.findItem()");
 
@@ -58,6 +65,11 @@ public class ItemController {
      * @return
      */
     @PutMapping("/{id}/{stock}")
+    @ApiOperation(value = "상품 재고 변경", notes = "상품 ID에 해당하는 상품의 재고를 변경한다.")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "상품 ID"),
+            @ApiImplicitParam(name = "stock", value = "상품 재고")})
+
     public ResponseEntity changeStock(@PathVariable Long id, @PathVariable int stock) {
         log.debug("ItemController.changeStock() : id: {}, stock: {}", id, stock);
         itemService.changeStock(id, stock);
