@@ -1,6 +1,6 @@
-package MELT.TestDomain.repository;
+package MELT.TestDomainItem.repository;
 
-import MELT.TestDomain.domain.Item;
+import MELT.TestDomainItem.domain.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
